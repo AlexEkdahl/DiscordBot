@@ -16,7 +16,6 @@ module.exports = {
         value: command.description,
       })
     })
-
     const newEmbed = new Discord.MessageEmbed()
       .setColor('#302864')
       .setTitle('Commands')
@@ -24,15 +23,17 @@ module.exports = {
       .addFields(arr)
 
     let userStamp = {
-      name: message.member.displayName,
+      name: message.member ? message.member.displayName : '',
       time: new Date().toLocaleTimeString(),
       function: this.name,
     }
+
     let data = fs.readFileSync('save.json')
     let myObject = JSON.parse(data)
     myObject.push(userStamp)
     myObject = JSON.stringify(myObject)
     fs.writeFileSync('save.json', myObject)
-    message.reply(newEmbed)
+
+    message.member ? message.reply(newEmbed) : message.send(newEmbed)
   },
 }

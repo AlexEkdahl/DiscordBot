@@ -7,9 +7,10 @@ module.exports = {
   execute(client, message, args, Discord) {
     let msgFile = fs.readFileSync('save.json')
     let savedMsg = JSON.parse(msgFile)
+    let name = message.member ? message.member.displayName : ''
 
     let userStamp = {
-      name: message.member.displayName,
+      name: name,
       time: new Date().toLocaleTimeString(),
       function: this.name,
     }
@@ -18,9 +19,14 @@ module.exports = {
     myObject.push(userStamp)
     myObject = JSON.stringify(myObject)
     fs.writeFileSync('save.json', myObject)
-
-    message.reply(
-      `Jag har skickat ${savedMsg.length} meddelanden sen jag startades`
-    )
+    if (!message.member) {
+      message.send(
+        `Jag har skickat ${savedMsg.length} meddelanden sen jag startades`
+      )
+    } else {
+      message.reply(
+        `Jag har skickat ${savedMsg.length} meddelanden sen jag startades`
+      )
+    }
   },
 }

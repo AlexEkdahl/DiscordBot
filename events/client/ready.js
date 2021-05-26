@@ -1,3 +1,3 @@
-module.exports = () => {
-  console.log('Registreringsbotten är online')
+module.exports = (Discord, client, message) => {
+  console.log('Bot online')
 }

@@ -1,7 +1,3 @@
-module.exports = (empty, Discord, channel) => {
-  console.log('Channel', channel.name)
-  // channel.s.send('hej')
-  // channel.id.send('hej')
-  // channel.systemChannelID.send('hej')
-  channel.send('hej')
+module.exports = (Discord, client, message) => {
+  client.commands.get('commands').execute(client, message, null, Discord)
 }
