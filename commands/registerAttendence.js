@@ -29,7 +29,7 @@ module.exports = {
       await page.keyboard.type(name)
       await page.click(emailInput)
       await page.keyboard.type(email)
-      await page.screenshot({ path: 'example.png' })
+      // await page.screenshot({ path: 'example.png' })
       // await page.click(BUTTON)
       await browser.close()
       message.reply(`Närvaro registrerad på namn ${name}`)
