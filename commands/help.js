@@ -1,7 +1,7 @@
 const fs = require('fs')
 
 module.exports = {
-  name: 'commands',
+  name: 'help',
   description: 'Get all commands',
   execute(client, message, args, Discord) {
     const commandFiles = fs
@@ -21,19 +21,6 @@ module.exports = {
       .setTitle('Commands')
       .setDescription('alla kommandon jag kan')
       .addFields(arr)
-
-    let userStamp = {
-      name: message.member ? message.member.displayName : '',
-      time: new Date().toLocaleTimeString(),
-      function: this.name,
-    }
-
-    let data = fs.readFileSync('save.json')
-    let myObject = JSON.parse(data)
-    myObject.push(userStamp)
-    myObject = JSON.stringify(myObject)
-    fs.writeFileSync('save.json', myObject)
-
     message.member ? message.reply(newEmbed) : message.send(newEmbed)
   },
 }
